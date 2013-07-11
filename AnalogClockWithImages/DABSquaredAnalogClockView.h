@@ -18,6 +18,8 @@ typedef enum {
     DABSquaredAnalogClockViewOptionNone        = 1 << 0, // Default to DABSquaredAnalogClockViewOptionSmoothHands
     DABSquaredAnalogClockViewOptionSmoothHands = 1 << 1, // Makes the second hand move in one continous smooth motion
     DABSquaredAnalogClockViewOptionClunkyHands = 1 << 2, // Makes the second hand move more like a classic analog clock
+    DABSquaredAnalogClockViewOptionShowTitle = 1 << 3, // shows the Titlelabel
+
 } DABSquaredAnalogClockViewOption;
 
 @interface DABSquaredAnalogClockView : UIView
@@ -29,6 +31,8 @@ typedef enum {
 @property (nonatomic, strong) UIImage *clockFaceImage;
 @property (nonatomic, strong) NSDate *clockTime;
 @property (nonatomic, strong) NSCalendar *calendar;
+@property (nonatomic, strong) UILabel *clockTitleLabel;
+@property (nonatomic, strong) NSString *clockTitle;
 
 
 

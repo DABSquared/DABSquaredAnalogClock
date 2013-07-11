@@ -51,13 +51,28 @@ NSString * const DABSquaredAnalogClockViewCenterCap  = @"center_cap";
     _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     _options  = options;
     
-    CGRect imageViewFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    CGRect imageViewFrame;
+    
+    if (DABSquaredAnalogClockViewOptionShowTitle & self.options) {      
+      _clockTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height-15, frame.size.width, 15)];
+      [_clockTitleLabel setBackgroundColor:[UIColor clearColor]];
+      [_clockTitleLabel setTextAlignment:NSTextAlignmentCenter];
+      [self addSubview:self.clockTitleLabel];
+      
+      imageViewFrame = CGRectMake(_clockTitleLabel.frame.size.height/2, 0, frame.size.width-_clockTitleLabel.frame.size.height, frame.size.height-_clockTitleLabel.frame.size.height);
+
+    } else {
+      imageViewFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    }
     
     _clockFaceImageView  = [[UIImageView alloc] initWithFrame:imageViewFrame];
     _hourHandImageView   = [[UIImageView alloc] initWithFrame:imageViewFrame];
     _minuteHandImageView = [[UIImageView alloc] initWithFrame:imageViewFrame];
     _secondHandImageView = [[UIImageView alloc] initWithFrame:imageViewFrame];
     _centreCapImageView  = [[UIImageView alloc] initWithFrame:imageViewFrame];
+    
+    
+    
     
     if (images) {
       self.clockFaceImage  = images[DABSquaredAnalogClockViewClockFace];
@@ -90,6 +105,28 @@ NSString * const DABSquaredAnalogClockViewCenterCap  = @"center_cap";
   }
   if (self.centreCapImageView.image && ![subViews containsObject:self.centreCapImageView]) {
     [self addSubview:self.centreCapImageView];
+  }
+}
+
+-(void)setClockTitle:(NSString *)clockTitle {
+   _clockTitle = clockTitle;
+   if (DABSquaredAnalogClockViewOptionShowTitle & self.options) {
+     [self.clockTitleLabel setText:self.clockTitle];
+   }
+}
+
+-(void)setClockTitleLabel:(UILabel *)clockTitleLabel {
+   _clockTitleLabel = clockTitleLabel;
+  if (DABSquaredAnalogClockViewOptionShowTitle & self.options) {
+    CGRect imageViewFrame = CGRectMake(_clockTitleLabel.frame.size.height/2, 0, self.frame.size.width-_clockTitleLabel.frame.size.height, self.frame.size.height-_clockTitleLabel.frame.size.height);
+
+    [_clockFaceImageView setFrame:imageViewFrame];
+    [_hourHandImageView  setFrame:imageViewFrame];
+    [_minuteHandImageView setFrame:imageViewFrame];
+    [_secondHandImageView setFrame:imageViewFrame];
+    [_centreCapImageView  setFrame:imageViewFrame];
+    [_clockTitleLabel removeFromSuperview];
+    [self addSubview:_clockTitleLabel];
   }
 }
 

@@ -88,8 +88,8 @@
 {
   DABSquaredAnalogClockView *analogClock4 = [[DABSquaredAnalogClockView alloc] initWithFrame:CGRectMake(220, 350, 80, 80) 
                                                                    andImages:[self images]
-                                                                 withOptions:DABSquaredAnalogClockViewOptionClunkyHands];
-  
+                                                                 withOptions:DABSquaredAnalogClockViewOptionClunkyHands|DABSquaredAnalogClockViewOptionShowTitle];
+    [analogClock4 setClockTitle:@"hi"];
   [self.view addSubview:analogClock4];
   
   [analogClock4 start];
