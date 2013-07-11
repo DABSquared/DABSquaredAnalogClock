@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DABSquaredAnalogClock"
-  s.version      = 1.0.0"
+  s.version      = "1.0.0"
   s.summary      = "A class for making analog style clocks with your own provided images."
   s.homepage     = "https://github.com/DABSquared/DABSquaredAnalogClock"
   s.license      = 'MIT'
