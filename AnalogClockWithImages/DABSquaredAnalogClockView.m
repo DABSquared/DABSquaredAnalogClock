@@ -222,7 +222,7 @@ NSString * const DABSquaredAnalogClockViewCenterCap  = @"center_cap";
   }
   
   int degreesPerHour   = 30;
-  int degreesPerMinute = 0.5;
+  double degreesPerMinute = 0.5;
   
   int hours = [self hours];
   
